@@ -4,7 +4,7 @@ version: '2'
 services:
   mssql:
     image: "mcr.microsoft.com/mssql/server:2017-CU20-ubuntu-16.04"
-    container_name: mssql-meta
+    container_name: mssql
     environment:
       - ACCEPT_EULA=Y
       - SA_PASSWORD=MetaChallenge2020

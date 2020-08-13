@@ -8,7 +8,7 @@ RUN jlink --strip-debug --no-header-files --no-man-pages --compress=2 --module-p
 
 FROM alpine:3.12.0
 COPY --from=java-build /jlink/jre-min /opt/jre-min
-ADD spring-boot-sample.jar /tmp/
+ADD web-app.jar /tmp/
 USER root
 ENV PATH /opt/jre-min/bin:$PATH
 ENV APP_HOME /opt/spring-boot
@@ -22,11 +22,11 @@ RUN apk add shadow \
     && cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime  \
     && echo "Asia/Tokyo" > /etc/timezone  \
     && apk del tzdata \
-    && mv /tmp/spring-boot-sample.jar ${APP_HOME}/
+    && mv /tmp/web-app.jar ${APP_HOME}/
 
 USER spring
 WORKDIR ${APP_HOME}
 EXPOSE 8080
 
 ENTRYPOINT ["/sbin/tini", "--"]
-CMD ["java", "-jar", "/opt/spring-boot/spring-boot-sample.jar"]
+CMD ["java", "-jar", "/opt/spring-boot/web-app.jar"]

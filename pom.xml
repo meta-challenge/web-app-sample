@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.3.1.RELEASE</version>
+    <relativePath/> <!-- lookup parent from repository -->
+  </parent>
+  <groupId>com.example</groupId>
+  <artifactId>spring-boot-aks</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>spring-boot-aks</name>
+  <description>S2S Application</description>
+
+  <properties>
+    <java.version>11</java.version>
+    <commons-lang3.version>3.10</commons-lang3.version>
+    <bootstrap.version>4.5.0</bootstrap.version>
+    <jquery.version>3.5.1</jquery.version>
+    <webjars-locator.version>0.40</webjars-locator.version>
+    <mssql-jdbc.version>8.2.2.jre11</mssql-jdbc.version>
+    <dbsetup.version>2.1.0</dbsetup.version>
+    <flyway.version>6.5.0</flyway.version>
+    <jacoco.version>0.8.5</jacoco.version>
+    <sonar.exclusions>
+      src/main/java/com/example/config/*.java,
+      src/main/java/com/example/persistence/entity/*.java,
+      src/main/java/com/example/persistence/mapper/*.java,
+      src/main/java/com/example/service/*.java,
+      src/main/java/com/example/service/impl/*.java,
+      src/main/java/com/example/web/controller/*.java,
+      src/main/java/com/example/web/filter/*.java,
+      src/main/java/com/example/web/form/*.java,
+      src/main/java/com/example/web/readtext/*.java,
+      src/main/java/com/example/web/summary/*.java,
+      src/main/java/com/example/web/word/*.java,
+      src/main/java/com/example/Application.java
+    </sonar.exclusions>
+  </properties>
+
+  <dependencies>
+    <!-- ============================ -->
+    <!-- Compile Scoped Dependencies -->
+    <!-- ============================ -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-thymeleaf</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-jdbc</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-security</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-mail</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-redis</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.session</groupId>
+      <artifactId>spring-session-data-redis</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>${commons-lang3.version}</version>
+    </dependency>
+
+    <!-- ============================ -->
+    <!-- Runtime Scoped Dependencies  -->
+    <!-- ============================ -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-actuator</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-devtools</artifactId>
+      <scope>runtime</scope>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>com.microsoft.sqlserver</groupId>
+      <artifactId>mssql-jdbc</artifactId>
+      <scope>runtime</scope>
+      <version>${mssql-jdbc.version}</version>
+    </dependency>
+
+    <!-- ============================ -->
+    <!-- Provided Scoped Dependencies -->
+    <!-- ============================ -->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <scope>provided</scope>
+      <optional>true</optional>
+    </dependency>
+
+    <!-- ============================ -->
+    <!-- Test Scoped Dependencies -->
+    <!-- ============================ -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>org.junit.vintage</groupId>
+          <artifactId>junit-vintage-engine</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>2.1.1</version>
+    </dependency>
+
+    <!-- 形態素解析用 -->
+    <!-- https://mvnrepository.com/artifact/org.codelibs/elasticsearch-analysis-kuromoji-ipadic-neologd -->
+    <dependency>
+      <groupId>org.codelibs</groupId>
+      <artifactId>elasticsearch-analysis-kuromoji-ipadic-neologd</artifactId>
+      <version>7.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>jakarta.validation</groupId>
+      <artifactId>jakarta.validation-api</artifactId>
+      <version>2.0.2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate.validator</groupId>
+      <artifactId>hibernate-validator</artifactId>
+      <version>6.0.20.Final</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-jpa</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-redis</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    
+
+  </dependencies>
+
+  <build>
+    <finalName>try-beta1</finalName>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.flywaydb</groupId>
+        <artifactId>flyway-maven-plugin</artifactId>
+        <version>${flyway.version}</version>
+        <configuration>
+          <!-- 
+          <url><![CDATA[jdbc:sqlserver://localhost:1433]]></url>
+          <user>sa</user>
+          <password>welcome1#</password>
+           -->
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>mssql-jdbc</artifactId>
+            <version>${mssql-jdbc.version}</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>${jacoco.version}</version>
+        <executions>
+          <execution>
+            <id>default-prepare-agent</id>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+<profiles>
+    <profile>
+      <id>local</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <flyway.user>sa</flyway.user>
+        <flyway.password>welcome1#</flyway.password>
+        <flyway.url><![CDATA[jdbc:sqlserver://localhost:1433]]></flyway.url>
+      </properties>
+    </profile>
+    <profile>
+      <id>pr</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <properties>
+        <flyway.user>ServerAdmin</flyway.user>
+        <flyway.password>welcome1#</flyway.password>
+        <flyway.url><![CDATA[jdbc:sqlserver://team8-sqlsrv.database.windows.net:1433;database=pbldb]]></flyway.url>
+      </properties>
+    </profile>
+  </profiles>
+
+</project>

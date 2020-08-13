@@ -187,7 +187,7 @@
           <!-- 
           <url><![CDATA[jdbc:sqlserver://localhost:1433]]></url>
           <user>sa</user>
-          <password>welcome1#</password>
+          <password>metaChallenge2020</password>
            -->
         </configuration>
         <dependencies>
@@ -222,7 +222,7 @@
       </activation>
       <properties>
         <flyway.user>sa</flyway.user>
-        <flyway.password>welcome1#</flyway.password>
+        <flyway.password>MetaChallenge2020</flyway.password>
         <flyway.url><![CDATA[jdbc:sqlserver://localhost:1433]]></flyway.url>
       </properties>
     </profile>
@@ -233,7 +233,7 @@
       </activation>
       <properties>
         <flyway.user>ServerAdmin</flyway.user>
-        <flyway.password>welcome1#</flyway.password>
+        <flyway.password>MetaChallenge2020</flyway.password>
         <flyway.url><![CDATA[jdbc:sqlserver://team8-sqlsrv.database.windows.net:1433;database=pbldb]]></flyway.url>
       </properties>
     </profile>
